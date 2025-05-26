@@ -222,4 +222,5 @@ COPY
 ) to '/home/skunkworks/development/openelections-data-ga/2024/20240409__ga__special__state__house__139__county-level.csv'
 (HEADER, DELIMITER ',');
 
+checkpoint;
 
