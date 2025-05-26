@@ -1,0 +1,5 @@
+county,precinct,office,district,party,candidate,election_day_votes,advanced_votes,absentee_by_mail_votes,provisional_votes
+Columbia,not available,State House,125,Republican,CJ Pearson,1862,489,9,1
+Columbia,not available,State House,125,Republican,Gary Richardson,2465,976,28,3
+McDuffie,not available,State House,125,Republican,CJ Pearson,147,79,2,0
+McDuffie,not available,State House,125,Republican,Gary Richardson,248,187,9,0
