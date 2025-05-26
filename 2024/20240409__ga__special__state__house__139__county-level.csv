@@ -1,0 +1,9 @@
+county,precinct,office,district,party,candidate,election_day_votes,advanced_votes,absentee_by_mail_votes,provisional_votes
+Harris,not available,State House,139,Independent,Robert Mallard,38,16,19,0
+Harris,not available,State House,139,Republican,Carmen Rice,230,79,11,0
+Harris,not available,State House,139,Republican,Donald Moeller,20,6,6,0
+Harris,not available,State House,139,Republican,Sean Knox,233,67,11,0
+Muscogee,not available,State House,139,Independent,Robert Mallard,82,41,41,0
+Muscogee,not available,State House,139,Republican,Carmen Rice,518,168,27,1
+Muscogee,not available,State House,139,Republican,Donald Moeller,74,20,14,0
+Muscogee,not available,State House,139,Republican,Sean Knox,562,129,43,0
