@@ -19,7 +19,7 @@ class PrecinctResult(BaseModel):
 class BallotOption(BaseModel):
     candidate: str = Field(alias='name')
     total_votes: int = Field(alias='voteCount')
-    party: str = Field(alias='politicalParty')
+    party: str | None = Field(alias='politicalParty')
     county_votes: List[GroupResult] = Field(alias='groupResults')
     precinct_results: Optional[List[PrecinctResult]] = Field(alias='precinctResults') # noqa
 
