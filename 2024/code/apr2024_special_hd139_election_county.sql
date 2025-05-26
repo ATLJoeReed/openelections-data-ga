@@ -84,8 +84,8 @@ from stage.apr2024_special_hd139_election_county;
 
 update stage.apr2024_special_hd139_election_county
     set office = 'State House',
-        district = '125'
-where office = 'Special - State House of Representatives - District 125';
+        district = '139'
+where office = 'State House of Representatives - District 139 ';
 
 select distinct office, district
 from stage.apr2024_special_hd139_election_county;
@@ -93,19 +93,25 @@ from stage.apr2024_special_hd139_election_county;
 ------------------------------------------------------------------------------------------------------------------------
 -- Cleanup PARTY...
 ------------------------------------------------------------------------------------------------------------------------
-select party, count(*) as cnt
-from stage.apr2024_special_hd139_election_county
-group by party
-order by party;
+select *
+from stage.apr2024_special_hd139_election_county;
+
+alter table stage.apr2024_special_hd139_election_county
+column party type varchar;
 
 update stage.apr2024_special_hd139_election_county
     set party = 'Republican'
-where upper(party) = 'REP';
+where candidate in ('Sean Knox','Carmen Rice','Donald Moeller');
 
-select party, count(*) as cnt
+update stage.apr2024_special_hd139_election_county
+    set party = 'Independent'
+where candidate = 'Robert Mallard';
+
+
+select candidate, party, count(*) as cnt
 from stage.apr2024_special_hd139_election_county
-group by party
-order by party;
+group by candidate, party
+order by party,candidate;
 
 ------------------------------------------------------------------------------------------------------------------------
 -- Cleanup COUNTY...
@@ -127,13 +133,13 @@ alter table stage.apr2024_special_hd139_election_county
 update stage.apr2024_special_hd139_election_county
     set original_candidate = candidate;
 
-select candidate, count(*) as cnt
-from stage.apr2024_special_hd139_election_county
-group by candidate;
-
-update stage.apr2024_special_hd139_election_county
-    set candidate = trim(replace(candidate, ' (Rep)', ''))
-where office in ('State House', 'State Senate');
+-- select candidate, count(*) as cnt
+-- from stage.apr2024_special_hd139_election_county
+-- group by candidate;
+--
+-- update stage.apr2024_special_hd139_election_county
+--     set candidate = trim(replace(candidate, ' (Rep)', ''))
+-- where office in ('State House', 'State Senate');
 
 select candidate, original_candidate, count(*) as cnt
 from stage.apr2024_special_hd139_election_county
@@ -185,7 +191,7 @@ select
     absentee_by_mail_votes,
     provisional_votes
 from prod.apr2024_special_hd139_election_county
-where county = 'Columbia'
+where county = 'Harris'
 order by county, office, district, candidate, party;
 
 select candidate, count(*) as cnt
@@ -213,7 +219,7 @@ COPY
         provisional_votes
     from prod.apr2024_special_hd139_election_county
     order by county, office, try_cast(district as integer), party, candidate   
-) to '/home/skunkworks/development/openelections-data-ga/2024/20240312__ga__runoff__state__house__125__county-level.csv'
+) to '/home/skunkworks/development/openelections-data-ga/2024/20240409__ga__special__state__house__139__county-level.csv'
 (HEADER, DELIMITER ',');
 
 
