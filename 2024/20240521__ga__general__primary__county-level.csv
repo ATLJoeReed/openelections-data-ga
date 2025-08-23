@@ -137,7 +137,7 @@ Banks,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,415,574
 Banks,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,1214,1514,78,2
 Banks,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,1201,1514,75,2
 Banks,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,1202,1495,76,2
-Banks,not available,U.S. House,9,Democrat,Tambrei Cash ,43,49,16,0
+Banks,not available,U.S. House,9,Democrat,Tambrei Cash,43,49,16,0
 Banks,not available,U.S. House,9,Republican,Andrew Clyde,1230,1575,68,2
 Barrow,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,3192,2219,202,2
 Barrow,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,3194,2222,202,1
@@ -378,7 +378,7 @@ Bulloch,not available,Appeals Court Judge,Dillard,Nonpartisan,Stephen Dillard,51
 Bulloch,not available,Appeals Court Judge,Miller,Nonpartisan,Tabitha Ponder,1318,709,106,2
 Bulloch,not available,District Attorney,Ogeechee Judicial Circuit,Republican,Daphne Jarriel Totten,1713,938,74,3
 Bulloch,not available,District Attorney,Ogeechee Judicial Circuit,Republican,Robert Busbee,3215,1574,78,4
-Bulloch,not available,State House,158,Democrat,Madeline Ryan Smith ,289,192,30,0
+Bulloch,not available,State House,158,Democrat,Madeline Ryan Smith,289,192,30,0
 Bulloch,not available,State House,158,Republican,Butch Parrish,1021,704,53,0
 Bulloch,not available,State House,159,Republican,Jon G. Burns,952,417,18,0
 Bulloch,not available,State House,160,Republican,Lehman Franklin,2491,1137,57,3
@@ -502,7 +502,7 @@ Candler,not available,Appeals Court Judge,Hodges,Nonpartisan,Ken Hodges,592,665,
 Candler,not available,Appeals Court Judge,Dillard,Nonpartisan,Stephen Dillard,592,670,19,0
 Candler,not available,Appeals Court Judge,Miller,Nonpartisan,Tabitha Ponder,169,158,9,0
 Candler,not available,District Attorney,Middle Judicial Circuit,Republican,Tripp Fitzner,492,607,13,0
-Candler,not available,State House,158,Democrat,Madeline Ryan Smith ,118,96,8,0
+Candler,not available,State House,158,Democrat,Madeline Ryan Smith,118,96,8,0
 Candler,not available,State House,158,Republican,Butch Parrish,509,626,15,0
 Candler,not available,State Senate,4,Republican,Billy Hickman,501,625,14,0
 Candler,not available,Supreme Court Justice,Pinson,Nonpartisan,Andrew Pinson,343,413,9,0
@@ -1199,7 +1199,7 @@ DeKalb,not available,State House,83,Republican,Catherine Bernard,401,165,10,0
 DeKalb,not available,State House,84,Democrat,Hunter Kemp,545,304,31,0
 DeKalb,not available,State House,84,Democrat,Mary Margaret Oliver,4678,2429,308,1
 DeKalb,not available,State House,85,Democrat,Karla L. Drenner,3299,1696,165,2
-DeKalb,not available,State House,86,Democrat,Imani Barnes (I) ,2920,1755,206,0
+DeKalb,not available,State House,86,Democrat,Imani Barnes,2920,1755,206,0
 DeKalb,not available,State House,86,Republican,Barry 'Z' Zisholtz,284,115,29,0
 DeKalb,not available,State House,87,Democrat,Viola Davis,3029,1855,157,0
 DeKalb,not available,State House,88,Democrat,Billy Mitchell,2675,1979,195,1
@@ -1507,7 +1507,7 @@ Emanuel,not available,Appeals Court Judge,Hodges,Nonpartisan,Ken Hodges,915,359,
 Emanuel,not available,Appeals Court Judge,Dillard,Nonpartisan,Stephen Dillard,926,358,45,0
 Emanuel,not available,Appeals Court Judge,Miller,Nonpartisan,Tabitha Ponder,274,107,28,0
 Emanuel,not available,District Attorney,Middle Judicial Circuit,Republican,Tripp Fitzner,739,287,29,0
-Emanuel,not available,State House,158,Democrat,Madeline Ryan Smith ,205,96,18,0
+Emanuel,not available,State House,158,Democrat,Madeline Ryan Smith,205,96,18,0
 Emanuel,not available,State House,158,Republican,Butch Parrish,748,293,32,0
 Emanuel,not available,State Senate,23,Democrat,Shayna Boston,237,98,21,0
 Emanuel,not available,State Senate,23,Republican,Max Burns,726,275,31,0
@@ -1556,7 +1556,7 @@ Fannin,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,835,55
 Fannin,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,2694,1933,204,5
 Fannin,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,2676,1936,210,5
 Fannin,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,2625,1905,203,5
-Fannin,not available,U.S. House,9,Democrat,Tambrei Cash ,137,136,51,1
+Fannin,not available,U.S. House,9,Democrat,Tambrei Cash,137,136,51,1
 Fannin,not available,U.S. House,9,Republican,Andrew Clyde,2690,1921,204,4
 Fayette,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,8823,6326,373,11
 Fayette,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,8769,6296,372,9
@@ -1825,7 +1825,7 @@ Gilmer,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,659,44
 Gilmer,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,2174,1401,171,3
 Gilmer,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,2162,1400,173,3
 Gilmer,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,2157,1389,166,3
-Gilmer,not available,U.S. House,9,Democrat,Tambrei Cash ,179,123,38,0
+Gilmer,not available,U.S. House,9,Democrat,Tambrei Cash,179,123,38,0
 Gilmer,not available,U.S. House,9,Republican,Andrew Clyde,2094,1348,142,3
 Glascock,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,372,370,16,1
 Glascock,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,372,370,16,1
@@ -2049,7 +2049,7 @@ Gwinnett,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,
 Gwinnett,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,39725,23579,2379,55
 Gwinnett,not available,U.S. House,4,Democrat,"Henry 'Hank' Johnson, Jr.",4028,2686,213,2
 Gwinnett,not available,U.S. House,4,Republican,Eugene Yu,3027,1376,140,3
-Gwinnett,not available,U.S. House,9,Democrat,Tambrei Cash ,6762,4320,421,16
+Gwinnett,not available,U.S. House,9,Democrat,Tambrei Cash,6762,4320,421,16
 Gwinnett,not available,U.S. House,9,Republican,Andrew Clyde,8537,4740,463,11
 Gwinnett,not available,U.S. House,10,Democrat,"Alexandra """"Lexy"""" Doherty",393,326,17,0
 Gwinnett,not available,U.S. House,10,Democrat,Jessica Fore,268,207,16,1
@@ -2084,7 +2084,7 @@ Habersham,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,942
 Habersham,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,2307,2714,193,0
 Habersham,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,2321,2715,189,0
 Habersham,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,2289,2692,188,0
-Habersham,not available,U.S. House,9,Democrat,Tambrei Cash ,229,176,40,0
+Habersham,not available,U.S. House,9,Democrat,Tambrei Cash,229,176,40,0
 Habersham,not available,U.S. House,9,Republican,Andrew Clyde,2197,2710,160,0
 Hall,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,10688,8852,866,6
 Hall,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,10715,8890,866,6
@@ -2122,7 +2122,7 @@ Hall,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,1081
 Hall,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,10761,8927,866,6
 Hall,not available,U.S. House,7,Democrat,Bob Christian,614,418,100,0
 Hall,not available,U.S. House,7,Republican,Rich Mccormick,3697,2792,233,1
-Hall,not available,U.S. House,9,Democrat,Tambrei Cash ,842,651,190,1
+Hall,not available,U.S. House,9,Democrat,Tambrei Cash,842,651,190,1
 Hall,not available,U.S. House,9,Republican,Andrew Clyde,5920,5152,425,3
 Hancock,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,814,620,184,1
 Hancock,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,800,615,183,1
@@ -2401,7 +2401,7 @@ Jackson,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,1636,
 Jackson,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,4711,5125,242,5
 Jackson,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,4705,5144,252,6
 Jackson,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,4687,5125,241,5
-Jackson,not available,U.S. House,9,Democrat,Tambrei Cash ,487,366,58,2
+Jackson,not available,U.S. House,9,Democrat,Tambrei Cash,487,366,58,2
 Jackson,not available,U.S. House,9,Republican,Andrew Clyde,4328,4837,216,3
 Jasper,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,1079,827,70,3
 Jasper,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,1081,830,71,3
@@ -3440,7 +3440,7 @@ Rabun,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,474,808
 Rabun,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,1293,2113,184,0
 Rabun,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,1294,2119,186,0
 Rabun,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,1286,2098,184,0
-Rabun,not available,U.S. House,9,Democrat,Tambrei Cash ,82,114,38,0
+Rabun,not available,U.S. House,9,Democrat,Tambrei Cash,82,114,38,0
 Rabun,not available,U.S. House,9,Republican,Andrew Clyde,1271,2202,178,0
 Randolph,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,356,229,24,1
 Randolph,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,353,236,23,1
@@ -3640,7 +3640,7 @@ Stephens,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,392,
 Stephens,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,1176,2450,193,1
 Stephens,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,1172,2432,192,1
 Stephens,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,1159,2419,194,1
-Stephens,not available,U.S. House,9,Democrat,Tambrei Cash ,70,89,34,0
+Stephens,not available,U.S. House,9,Democrat,Tambrei Cash,70,89,34,0
 Stephens,not available,U.S. House,9,Republican,Andrew Clyde,1145,2487,186,1
 Stewart,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,258,176,25,4
 Stewart,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,265,176,26,4
@@ -3923,7 +3923,7 @@ Towns,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,397,587
 Towns,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,1102,1761,112,0
 Towns,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,1106,1770,116,0
 Towns,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,1096,1754,113,0
-Towns,not available,U.S. House,9,Democrat,Tambrei Cash ,71,99,36,0
+Towns,not available,U.S. House,9,Democrat,Tambrei Cash,71,99,36,0
 Towns,not available,U.S. House,9,Republican,Andrew Clyde,1108,1786,99,0
 Treutlen,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,483,441,21,0
 Treutlen,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,483,440,23,0
@@ -3935,7 +3935,7 @@ Treutlen,not available,Appeals Court Judge,Dillard,Nonpartisan,Stephen Dillard,4
 Treutlen,not available,Appeals Court Judge,Miller,Nonpartisan,Tabitha Ponder,146,122,7,0
 Treutlen,not available,District Attorney,Dublin Judicial Circuit,Republican,Craig Fraser,287,258,15,0
 Treutlen,not available,District Attorney,Dublin Judicial Circuit,Republican,Harold D. McLendon,166,192,4,0
-Treutlen,not available,State House,158,Democrat,Madeline Ryan Smith ,99,83,5,0
+Treutlen,not available,State House,158,Democrat,Madeline Ryan Smith,99,83,5,0
 Treutlen,not available,State House,158,Republican,Butch Parrish,390,388,16,0
 Treutlen,not available,State Senate,20,Republican,Larry Walker,311,330,13,0
 Treutlen,not available,State Senate,20,Republican,Tori Branum,121,89,4,0
@@ -4055,7 +4055,7 @@ Union,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,918,110
 Union,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,2723,3232,157,2
 Union,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,2715,3249,158,1
 Union,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,2710,3226,155,2
-Union,not available,U.S. House,9,Democrat,Tambrei Cash ,157,185,39,0
+Union,not available,U.S. House,9,Democrat,Tambrei Cash,157,185,39,0
 Union,not available,U.S. House,9,Republican,Andrew Clyde,2757,3275,137,4
 Upson,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,1635,2084,143,0
 Upson,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,1630,2085,147,0
@@ -4295,7 +4295,7 @@ White,not available,Supreme Court Justice,Pinson,Nonpartisan,John Barrow,602,535
 White,not available,Supreme Court Justice,Ellington,Nonpartisan,John J. Ellington,2025,1646,133,3
 White,not available,Supreme Court Justice,Boggs,Nonpartisan,Michael P. Boggs,2023,1644,132,3
 White,not available,Supreme Court Justice,Peterson,Nonpartisan,Nels Peterson,2015,1632,133,3
-White,not available,U.S. House,9,Democrat,Tambrei Cash ,159,118,29,0
+White,not available,U.S. House,9,Democrat,Tambrei Cash,159,118,29,0
 White,not available,U.S. House,9,Republican,Andrew Clyde,1911,1581,110,3
 Whitfield,not available,Appeals Court Judge,Mercier,Nonpartisan,Amanda H. Mercier,5304,2262,223,3
 Whitfield,not available,Appeals Court Judge,Land,Nonpartisan,Ben Land,5301,2258,221,3

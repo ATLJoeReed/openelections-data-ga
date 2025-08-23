@@ -397,6 +397,17 @@ order by cnt desc;
 select *
 from prod.may2024_genpri_election_county;
 
+update prod.may2024_genpri_election_county
+    set candidate = trim(candidate);
+
+update prod.may2024_genpri_election_county
+    set candidate = trim(replace(candidate, ' (I)', ''))
+where candidate ilike '% (I)';
+
+select candidate, *
+from prod.may2024_genpri_election_county
+where candidate in ('Tambrei Cash', 'Madeline Ryan Smith', 'Imani Barnes')
+
 -----------------------------------------------------------------------------------------------
 -- Write out CSV file...
 -----------------------------------------------------------------------------------------------
