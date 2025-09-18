@@ -1,0 +1,145 @@
+county,precinct,office,district,party,candidate,election_day_votes,advanced_votes,absentee_by_mail_votes,provisional_votes
+Baker,not available,U.S. House,2,Republican,A. Wayne Johnson,2,3,0,0
+Baker,not available,U.S. House,2,Republican,Chuck Hand,2,0,0,0
+Bibb,not available,State House,145,Democrat,Juawn Jackson,393,262,28,0
+Bibb,not available,State House,145,Democrat,Tangie Herring,616,420,48,0
+Bibb,not available,U.S. House,2,Republican,A. Wayne Johnson,330,113,31,0
+Bibb,not available,U.S. House,2,Republican,Chuck Hand,110,29,5,0
+Burke,not available,Superior Court Judge,Augusta Judicial Circut,,Charles Lyons,438,192,104,0
+Burke,not available,Superior Court Judge,Augusta Judicial Circut,,Matt Matson,354,133,32,1
+Calhoun,not available,U.S. House,2,Republican,A. Wayne Johnson,15,8,4,1
+Calhoun,not available,U.S. House,2,Republican,Chuck Hand,16,2,0,0
+Camden,not available,State House,180,Republican,Glenn Cook,971,754,63,1
+Camden,not available,State House,180,Republican,Steven Sainz (I),1186,925,69,0
+Carroll,not available,U.S. House,3,Republican,Brian Jack,2578,778,0,0
+Carroll,not available,U.S. House,3,Republican,Mike Dugan,3171,1360,0,0
+Catoosa,not available,U.S. House,14,Democrat,Clarence Blalock,149,142,19,0
+Catoosa,not available,U.S. House,14,Democrat,Shawn Harris,165,222,36,0
+Chattahoochee,not available,U.S. House,2,Republican,A. Wayne Johnson,10,8,0,0
+Chattahoochee,not available,U.S. House,2,Republican,Chuck Hand,4,0,1,0
+Chattooga,not available,U.S. House,14,Democrat,Clarence Blalock,41,28,4,0
+Chattooga,not available,U.S. House,14,Democrat,Shawn Harris,78,62,15,0
+Clay,not available,U.S. House,2,Republican,A. Wayne Johnson,11,14,3,0
+Clay,not available,U.S. House,2,Republican,Chuck Hand,3,3,0,0
+Clayton,not available,State Senate,34,Democrat,Kenya Wicks,1492,1788,169,0
+Clayton,not available,State Senate,34,Democrat,Valencia Stovall,1156,1128,67,1
+Cobb,not available,U.S. House,14,Democrat,Clarence Blalock,809,293,75,3
+Cobb,not available,U.S. House,14,Democrat,Shawn Harris,1529,481,150,7
+Columbia,not available,State House,131,Republican,Paul Abbott,340,166,63,0
+Columbia,not available,State House,131,Republican,Rob Clifton,966,514,81,0
+Coweta,not available,U.S. House,3,Republican,Brian Jack,3558,1559,203,0
+Coweta,not available,U.S. House,3,Republican,Mike Dugan,2237,944,133,0
+Crawford,not available,U.S. House,2,Republican,A. Wayne Johnson,60,52,18,0
+Crawford,not available,U.S. House,2,Republican,Chuck Hand,72,43,9,0
+Dade,not available,U.S. House,14,Democrat,Clarence Blalock,29,21,4,0
+Dade,not available,U.S. House,14,Democrat,Shawn Harris,46,51,13,0
+DeKalb,not available,State Senate,55,Democrat,Iris Knight-Hamilton,1814,1346,153,1
+DeKalb,not available,State Senate,55,Democrat,Randal Mangham,2384,1677,169,0
+Decatur,not available,U.S. House,2,Republican,A. Wayne Johnson,107,80,15,0
+Decatur,not available,U.S. House,2,Republican,Chuck Hand,57,21,8,0
+Dooly,not available,U.S. House,2,Republican,A. Wayne Johnson,28,19,11,0
+Dooly,not available,U.S. House,2,Republican,Chuck Hand,20,5,0,0
+Dougherty,not available,Superior Court Judge,Dougherty Judicial Circuit,,Valerie Brown-Williams,1116,443,73,4
+Dougherty,not available,Superior Court Judge,Dougherty Judicial Circuit,,Victoria Johnson,2126,965,145,4
+Dougherty,not available,U.S. House,2,Republican,A. Wayne Johnson,294,63,20,1
+Dougherty,not available,U.S. House,2,Republican,Chuck Hand,139,19,6,0
+Douglas,not available,Superior Court Judge,Douglas Judicial Circuit,,Lauren Wallace,2780,1035,228,4
+Douglas,not available,Superior Court Judge,Douglas Judicial Circuit,,Nicole Jones,1384,586,167,0
+Douglas,not available,U.S. House,3,Republican,Brian Jack,607,118,38,2
+Douglas,not available,U.S. House,3,Republican,Mike Dugan,358,79,27,0
+Early,not available,U.S. House,2,Republican,A. Wayne Johnson,77,48,11,0
+Early,not available,U.S. House,2,Republican,Chuck Hand,35,4,0,0
+Fayette,not available,State Senate,34,Democrat,Kenya Wicks,782,591,82,0
+Fayette,not available,State Senate,34,Democrat,Valencia Stovall,128,60,12,0
+Fayette,not available,U.S. House,3,Republican,Brian Jack,3012,1923,118,0
+Fayette,not available,U.S. House,3,Republican,Mike Dugan,1392,775,51,1
+Floyd,not available,U.S. House,14,Democrat,Clarence Blalock,162,101,30,0
+Floyd,not available,U.S. House,14,Democrat,Shawn Harris,651,414,68,1
+Fulton,not available,State Senate,38,Democrat,RaShaun Kemp,1326,950,132,0
+Fulton,not available,State Senate,38,Democrat,"Ralph Long, III",858,636,132,0
+Glynn,not available,State House,180,Republican,Glenn Cook,213,62,13,0
+Glynn,not available,State House,180,Republican,Steven Sainz (I),75,38,1,0
+Grady,not available,U.S. House,2,Republican,A. Wayne Johnson,372,257,26,0
+Grady,not available,U.S. House,2,Republican,Chuck Hand,232,78,19,0
+Gwinnett,not available,State House,96,Democrat,Arlene Beckles,119,86,12,0
+Gwinnett,not available,State House,96,Democrat,Sonia Lopez,64,45,7,0
+Gwinnett,not available,State Senate,7,Republican,Fred Clayton,592,182,67,0
+Gwinnett,not available,State Senate,7,Republican,J. Gregory Howard,874,380,94,1
+Gwinnett,not available,State Senate,55,Democrat,Iris Knight-Hamilton,511,299,58,0
+Gwinnett,not available,State Senate,55,Democrat,Randal Mangham,448,231,40,0
+Gwinnett,not available,Superior Court Judge,Gwinnett Judicial Circuit,,Regina Matthews,4861,2226,803,4
+Gwinnett,not available,Superior Court Judge,Gwinnett Judicial Circuit,,Tuwanda Rush Williams,5229,3028,673,9
+Haralson,not available,U.S. House,3,Republican,Brian Jack,825,196,50,0
+Haralson,not available,U.S. House,3,Republican,Mike Dugan,519,179,53,0
+Harris,not available,U.S. House,3,Republican,Brian Jack,1281,350,68,1
+Harris,not available,U.S. House,3,Republican,Mike Dugan,607,198,29,2
+Heard,not available,U.S. House,3,Republican,Brian Jack,375,119,89,0
+Heard,not available,U.S. House,3,Republican,Mike Dugan,198,92,41,0
+Henry,not available,U.S. House,3,Republican,Brian Jack,208,94,10,0
+Henry,not available,U.S. House,3,Republican,Mike Dugan,68,40,1,0
+Houston,not available,U.S. House,2,Republican,A. Wayne Johnson,167,205,53,0
+Houston,not available,U.S. House,2,Republican,Chuck Hand,88,68,14,0
+Lamar,not available,U.S. House,3,Republican,Brian Jack,499,188,25,0
+Lamar,not available,U.S. House,3,Republican,Mike Dugan,176,79,12,0
+Lee,not available,U.S. House,2,Republican,A. Wayne Johnson,268,155,22,0
+Lee,not available,U.S. House,2,Republican,Chuck Hand,152,43,11,0
+Macon,not available,U.S. House,2,Republican,A. Wayne Johnson,25,17,6,0
+Macon,not available,U.S. House,2,Republican,Chuck Hand,29,13,4,0
+Marion,not available,U.S. House,2,Republican,A. Wayne Johnson,58,27,4,0
+Marion,not available,U.S. House,2,Republican,Chuck Hand,66,20,0,0
+Meriwether,not available,U.S. House,3,Republican,Brian Jack,614,130,42,2
+Meriwether,not available,U.S. House,3,Republican,Mike Dugan,271,75,9,0
+Miller,not available,U.S. House,2,Republican,A. Wayne Johnson,57,38,2,0
+Miller,not available,U.S. House,2,Republican,Chuck Hand,11,2,1,0
+Mitchell,not available,U.S. House,2,Republican,A. Wayne Johnson,136,35,28,0
+Mitchell,not available,U.S. House,2,Republican,Chuck Hand,67,8,2,0
+Monroe,not available,State House,145,Democrat,Juawn Jackson,115,125,7,0
+Monroe,not available,State House,145,Democrat,Tangie Herring,90,75,16,0
+Murray,not available,U.S. House,14,Democrat,Clarence Blalock,22,11,7,0
+Murray,not available,U.S. House,14,Democrat,Shawn Harris,45,20,8,0
+Muscogee,not available,U.S. House,2,Republican,A. Wayne Johnson,925,725,152,0
+Muscogee,not available,U.S. House,2,Republican,Chuck Hand,601,428,66,0
+Muscogee,not available,U.S. House,3,Republican,Brian Jack,906,406,51,0
+Muscogee,not available,U.S. House,3,Republican,Mike Dugan,409,210,29,0
+Paulding,not available,U.S. House,14,Democrat,Clarence Blalock,491,265,57,0
+Paulding,not available,U.S. House,14,Democrat,Shawn Harris,1041,660,210,0
+Peach,not available,U.S. House,2,Republican,A. Wayne Johnson,119,115,23,0
+Peach,not available,U.S. House,2,Republican,Chuck Hand,71,24,7,0
+Pike,not available,U.S. House,3,Republican,Brian Jack,1094,596,77,3
+Pike,not available,U.S. House,3,Republican,Mike Dugan,353,217,30,1
+Polk,not available,U.S. House,14,Democrat,Clarence Blalock,45,31,9,0
+Polk,not available,U.S. House,14,Democrat,Shawn Harris,152,231,32,0
+Quitman,not available,U.S. House,2,Republican,A. Wayne Johnson,36,54,3,0
+Quitman,not available,U.S. House,2,Republican,Chuck Hand,20,9,1,0
+Randolph,not available,U.S. House,2,Republican,A. Wayne Johnson,49,17,1,0
+Randolph,not available,U.S. House,2,Republican,Chuck Hand,9,3,1,0
+Richmond,not available,Superior Court Judge,Augusta Judicial Circut,,Charles Lyons,8091,5148,553,2
+Richmond,not available,Superior Court Judge,Augusta Judicial Circut,,Matt Matson,4908,2148,211,1
+Schley,not available,U.S. House,2,Republican,A. Wayne Johnson,51,41,8,0
+Schley,not available,U.S. House,2,Republican,Chuck Hand,52,13,3,0
+Seminole,not available,U.S. House,2,Republican,A. Wayne Johnson,88,18,5,0
+Seminole,not available,U.S. House,2,Republican,Chuck Hand,50,10,5,0
+Spalding,not available,U.S. House,3,Republican,Brian Jack,1565,848,113,1
+Spalding,not available,U.S. House,3,Republican,Mike Dugan,633,406,60,0
+Stewart,not available,U.S. House,2,Republican,A. Wayne Johnson,9,2,0,0
+Stewart,not available,U.S. House,2,Republican,Chuck Hand,1,0,0,0
+Sumter,not available,U.S. House,2,Republican,A. Wayne Johnson,169,76,12,0
+Sumter,not available,U.S. House,2,Republican,Chuck Hand,60,32,1,0
+Talbot,not available,U.S. House,2,Republican,A. Wayne Johnson,36,16,5,0
+Talbot,not available,U.S. House,2,Republican,Chuck Hand,29,6,5,0
+Taylor,not available,U.S. House,2,Republican,A. Wayne Johnson,82,98,17,0
+Taylor,not available,U.S. House,2,Republican,Chuck Hand,215,160,11,0
+Terrell,not available,U.S. House,2,Republican,A. Wayne Johnson,64,22,10,0
+Terrell,not available,U.S. House,2,Republican,Chuck Hand,72,12,6,0
+Thomas,not available,U.S. House,2,Republican,A. Wayne Johnson,708,594,41,0
+Thomas,not available,U.S. House,2,Republican,Chuck Hand,340,172,15,0
+Troup,not available,U.S. House,3,Republican,Brian Jack,1871,683,96,0
+Troup,not available,U.S. House,3,Republican,Mike Dugan,987,488,61,0
+Upson,not available,U.S. House,3,Republican,Brian Jack,842,765,77,0
+Upson,not available,U.S. House,3,Republican,Mike Dugan,263,335,34,0
+Walker,not available,U.S. House,14,Democrat,Clarence Blalock,122,27,22,0
+Walker,not available,U.S. House,14,Democrat,Shawn Harris,250,53,77,0
+Webster,not available,U.S. House,2,Republican,A. Wayne Johnson,0,1,0,0
+Webster,not available,U.S. House,2,Republican,Chuck Hand,8,2,2,0
+Whitfield,not available,U.S. House,14,Democrat,Clarence Blalock,161,53,12,0
+Whitfield,not available,U.S. House,14,Democrat,Shawn Harris,263,117,71,0
