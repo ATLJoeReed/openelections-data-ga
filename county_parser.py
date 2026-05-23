@@ -13,7 +13,7 @@ OFFICES = ['United States Senator, Isakson', 'Governor', 'Lieutenant Governor', 
 def parse_statewide_url(url):
     contests = []
     r = requests.get(url)
-    soup = BeautifulSoup(r.text)
+    soup = BeautifulSoup(r.text, "lxml")
     offices = soup.findAll('strong')[1:]
     for office in offices:
         if office.text in OFFICES:
@@ -33,7 +33,7 @@ def get_candidates(candidates_row):
 
 def parse_county_results(url):
     r = requests.get(url)
-    soup = BeautifulSoup(r.text)
+    soup = BeautifulSoup(r.text, "lxml")
     table = soup.findAll('table')[2]
     rows = table.findAll('tr')
     candidates = get_candidates(rows[0].find('table').find('tr'))
