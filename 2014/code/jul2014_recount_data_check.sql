@@ -9,7 +9,7 @@ WITH precinct_agg AS (
         SUM(advanced_votes) AS p_advanced,
         SUM(absentee_by_mail_votes) AS p_absentee,
         SUM(provisional_votes) AS p_provisional
-    FROM read_csv_auto('/Users/skunkworks/Development/openelections-data-ga/2014/20140520__ga__general__primary__precinct-level_UNOFFICIAL.csv')
+    FROM read_csv_auto('/Users/skunkworks/Development/openelections-data-ga/2014/20140722__ga__general__primary__runoff__recount__precinct-level_UNOFFICIAL.csv')
     GROUP BY county, office, district, party, candidate
 ),
 county_level AS (
@@ -23,7 +23,7 @@ county_level AS (
         advanced_votes AS c_advanced,
         absentee_by_mail_votes AS c_absentee,
         provisional_votes AS c_provisional
-    FROM read_csv_auto('/Users/skunkworks/Development/openelections-data-ga/2014/20140520__ga__general__primary__county-level.csv')
+    FROM read_csv_auto('/Users/skunkworks/Development/openelections-data-ga/2014/20140722__ga__general__primary__runoff__recount__county-level.csv')
 )
 SELECT 
     c.county,
@@ -38,9 +38,9 @@ FROM county_level c
 inner JOIN precinct_agg p
     ON c.county = p.county 
     AND c.office = p.office 
-    AND c.district = p.district 
-    AND c.party = p.party 
-    AND c.candidate = p.candidate
+    AND coalesce(c.district::varchar, '') = coalesce(p.district::varchar, '')
+    AND c.party = p.party
+    AND c.candidate = p.candidate;
 WHERE 
     COALESCE(c.c_election_day, 0) <> COALESCE(p.p_election_day, 0) OR
     COALESCE(c.c_advanced, 0) <> COALESCE(p.p_advanced, 0) OR

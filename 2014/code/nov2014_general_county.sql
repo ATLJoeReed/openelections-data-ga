@@ -1,65 +1,77 @@
 -----------------------------------------------------------------------------------------------
--- Load CSV data...
+-- Before this process I am downloading the JSON file from GA elections and running it through
+-- the enhanced_voting_process/load_json.ipynb Jupyter Notebook...
+-- As I work through this process a couple of times I will create some documentation around it.
 -----------------------------------------------------------------------------------------------
-create or replace table raw.may2014_general_primary_precinct
+
+create schema raw;
+create schema stage;
+create schema prod;
+
+-----------------------------------------------------------------------------------------------
+-- Load JSON data...
+-----------------------------------------------------------------------------------------------
+create or replace table raw.nov2014_general_county
 as
-SELECT *
-FROM read_csv(
-    '/Users/skunkworks/Development/openelections-data-ga/2014/Archive/*.csv',
-    header = False,
-    skip = 1,
-    names = [
-        'county', 'precinct', 'office', 'district', 'party',
-        'candidate', 'total_votes', 'absentee_by_mail', 'election_day',
-        'advance_in_person', 'provisional'
-    ],
-    types = {
+select *
+from read_json(
+    '/Users/skunkworks/Development/openelections-data-ga/2014/code/ga_20141104_county_level_data.json',
+    format = 'auto',
+    columns = {
+        'election_name': 'VARCHAR',
+        'election_date': 'DATE',
         'county': 'VARCHAR',
-        'precinct': 'VARCHAR',
         'office': 'VARCHAR',
-        'district': 'VARCHAR',
-        'party': 'VARCHAR',
         'candidate': 'VARCHAR',
+        'party': 'VARCHAR',
+        'vote_type': 'VARCHAR',
+        'votes': 'INTEGER',
         'total_votes': 'INTEGER',
-        'absentee_by_mail': 'INTEGER',
-        'election_day': 'INTEGER',
-        'advance_in_person': 'INTEGER',
-        'provisional': 'INTEGER'
-    },
-    nullstr = ''
+    }
 );
 
-
 select *
-from raw.may2014_general_primary_precinct;
+from raw.nov2014_general_county;
 
 -- Checking on some of the county|precinct|candidates with 0 total votes...
 select *
-from raw.may2014_general_primary_precinct
+from raw.nov2014_general_county
 where coalesce(total_votes, 0) = 0;
 
-select *
-from raw.may2014_general_primary_precinct
-where precinct is null;
+-----------------------------------------------------------------------------------------------
+-- Rename vote_types before pivoting the data...
+-----------------------------------------------------------------------------------------------
+select distinct vote_type
+from raw.nov2014_general_county
+order by vote_type;
 
--- Clear out "top level" header rows...
-delete from raw.may2014_general_primary_precinct
-where precinct is null;
+update raw.nov2014_general_county
+    set vote_type =
+        case
+            when vote_type = 'Absentee by Mail' then 'absentee_by_mail_votes'
+            when vote_type = 'Advance in Person' then 'advanced_votes'
+            when vote_type = 'Election Day' then 'election_day_votes'
+            when vote_type = 'Provisional' then 'provisional_votes'
+        end;
+
 
 -----------------------------------------------------------------------------------------------
 -- Pivot data and copy to STAGE, begin the cleanup and QC...
--- This data is already pivoted correctly...
 -----------------------------------------------------------------------------------------------
-create or replace table stage.may2014_general_primary_precinct
+create or replace table stage.nov2014_general_county
 as
-select *
-from raw.may2014_general_primary_precinct;
+pivot raw.nov2014_general_county
+on vote_type
+using sum(votes);
+
+alter table stage.nov2014_general_county
+    add column district varchar;
 
 select *
-from stage.may2014_general_primary_precinct;
+from stage.nov2014_general_county;
 
 select office, count(*) as cnt
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 group by office
 order by office;
 
@@ -70,7 +82,7 @@ select
     office,
     count(distinct county) as num_counties,
     count(distinct candidate) as num_candidates
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 group by office
 order by office;
 
@@ -78,321 +90,241 @@ order by office;
 --           and State offices right now. See the readme file in github for a list of them.
 --           I typically take the above output and put it in a Google sheet and review them there.
 
-alter table stage.may2014_general_primary_precinct
+alter table stage.nov2014_general_county
     add column original_office varchar;
 
-update stage.may2014_general_primary_precinct
+update stage.nov2014_general_county
     set original_office = office;
 
-------------------------------------------------------------------------------------------------------------------------
--- APPEALS COURT JUDGE
-------------------------------------------------------------------------------------------------------------------------
-select *
-from stage.may2014_general_primary_precinct
-where office ilike 'Appeals Court Judge%';
+delete from stage.nov2014_general_county
+where office ilike 'Constitutional Amendment #%';
 
-update stage.may2014_general_primary_precinct
-    set office = 'Appeals Court Judge'
-where office ilike 'Appeals Court Judge%';
-
-update stage.may2014_general_primary_precinct
-    set party = 'Nonpartisan'
-where office ilike 'Appeals Court Judge%';
-
-update stage.may2014_general_primary_precinct
-    set district = null
-where office ilike 'Appeals Court Judge%';
-
-select *
-from stage.may2014_general_primary_precinct
-where office ilike 'Appeals Court Judge%';
+delete from stage.nov2014_general_county
+where office ilike 'Statewide Referendum%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- ATTORNEY GENERAL
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'Attorney General%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- COMMISSIONER OF %
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'Commissioner Of%';
-
-select
-    office,
-    count(distinct county) as num_counties,
-    count(distinct candidate) as num_candidates
-from stage.may2014_general_primary_precinct
-where office ilike 'Commissioner Of%'
-group by office
-order by office;
 
 ------------------------------------------------------------------------------------------------------------------------
 -- DISTRICT ATTORNEY
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'District Attorney%';
 
 SELECT
     office,
-    trim(split_part(office, ', ', 1)) as new_office,
-    trim(split_part(office, ', ', 2)) as district
-from stage.may2014_general_primary_precinct
+    trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 1)) AS new_office,
+    trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)) AS district
+from stage.nov2014_general_county
 where office ilike 'District Attorney%';
 
-update stage.may2014_general_primary_precinct
-    set office = trim(split_part(office, ', ', 1)),
-        district = trim(split_part(office, ', ', 2))
+update stage.nov2014_general_county
+    set office = trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 1)),
+        district = trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2))
 where office ilike 'District Attorney%';
 
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'District Attorney%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- GOVERNOR
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'Governor%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- LIEUTENANT GOVERNOR
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'Lieutenant Governor%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- PUBLIC SERVICE COMMISSIOINER
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'Public Service Commission%';
 
-update stage.may2014_general_primary_precinct
-    set office = 'Public Service Commissioner'
+SELECT
+    office,
+    trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 1)) AS new_office,
+    replace(trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)), 'District ', '') AS district
+from stage.nov2014_general_county
+where office ilike 'Public Service Commission%';
+
+update stage.nov2014_general_county
+    set office = trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 1)),
+        district = replace(trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)), 'District ', '')
+where office ilike 'Public Service Commission%';
+
+update stage.nov2014_general_county
+    set office = trim(office) || 'er'
 where office ilike 'Public Service Commission%';
 
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'Public Service Commission%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- STATE HOUSE
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'State Representative%';
 
-update stage.may2014_general_primary_precinct
-    set office = 'State House'
+SELECT
+    office,
+    trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 1)) AS new_office,
+    replace(trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)), 'District ', '') AS district
+from stage.nov2014_general_county
+where office ilike 'State Representative%';
+
+update stage.nov2014_general_county
+    set office = 'State House',
+        district = replace(trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)), 'District ', '')
 where office ilike 'State Representative%';
 
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'State House%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- STATE SCHOOL SUPERINTENDENT
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'State School Superintendent%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- STATE SENATE
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'State Senat%';
 
-update stage.may2014_general_primary_precinct
-    set office = 'State Senate'
+SELECT
+    office,
+    trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 1)) AS new_office,
+    replace(trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)), 'District ', '') AS district
+from stage.nov2014_general_county
 where office ilike 'State Senat%';
 
-update stage.may2014_general_primary_precinct
-    set district = '42'
-where office = 'State Senate'
-    and district is null;
+update stage.nov2014_general_county
+    set office = 'State Senate',
+        district = replace(trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)), 'District ', '')
+where office ilike 'State Senat%';
 
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'State Senate%'
 order by district;
-
-------------------------------------------------------------------------------------------------------------------------
--- SUPERIOR COURT JUDGE
-------------------------------------------------------------------------------------------------------------------------
-select *
-from stage.may2014_general_primary_precinct
-where office ilike 'Superior Court Judge%';
-
-select
-    district,
-    trim(string_split(district, '(')[1]) AS district
-from stage.may2014_general_primary_precinct
-where office ilike 'Superior Court Judge%';
-
-update stage.may2014_general_primary_precinct
-    set district =  trim(string_split(district, '(')[1]),
-        party = 'Nonpartisan'
-where office ilike 'Superior Court Judge%';
-
-select *
-from stage.may2014_general_primary_precinct
-where office ilike 'Superior Court Judge%';
-
-------------------------------------------------------------------------------------------------------------------------
--- SUPREME COURT JUSTICE
-------------------------------------------------------------------------------------------------------------------------
-select *
-from stage.may2014_general_primary_precinct
-where office ilike 'Supreme Court Justice%';
-
-update stage.may2014_general_primary_precinct
-    set party = 'Nonpartisan',
-        district = null
-where office ilike 'Supreme Court Justice%';
-
-select *
-from stage.may2014_general_primary_precinct
-where office ilike 'Supreme Court Justice%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- SECRETARY OF STATE
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'Secretary Of State%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- U.S. HOUSE
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
-where office ilike 'U.S. Representative%'
---     and county ilike 'Dekalb'
-order by district;
+from stage.nov2014_general_county
+where office ilike 'U.S. Representative%';
 
-update stage.may2014_general_primary_precinct
-    set office = 'U.S. House'
+select
+    office,
+    trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 1)) AS new_office,
+    replace(trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)), 'District ', '') AS district
+from stage.nov2014_general_county
+where office ilike 'U.S. Representative%';
+
+update stage.nov2014_general_county
+    set office = 'U.S. House',
+        district = replace(trim(split_part(trim(split_part(office, ' - ', 1)), ', ', 2)), 'District ', '')
 where office ilike 'U.S. Representative%';
 
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'U.S. House%';
 
 ------------------------------------------------------------------------------------------------------------------------
 -- U.S. SENATE
 ------------------------------------------------------------------------------------------------------------------------
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'United States Senator%';
 
-update stage.may2014_general_primary_precinct
+update stage.nov2014_general_county
     set office = 'U.S. Senate'
 where office ilike 'United States Senator%';
 
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 where office ilike 'U.S. Senate%';
 
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
 
 select office, count(*) as cnt
-from stage.may2014_general_primary_precinct
-WHERE office IN (
-    'Appeals Court Judge',
-    'Attorney General',
-    'Commissioner Of Agriculture',
-    'Commissioner Of Insurance',
-    'Commissioner Of Labor',
-    'District Attorney',
-    'Governor',
-    'Lieutenant Governor',
-    'President',
-    'Public Service Commissioner',
-    'Secretary Of State',
-    'State House',
-    'State School Superintendent',
-    'State Senate',
-    'Superior Court Judge',
-    'Supreme Court Justice',
-    'U.S. House',
-    'U.S. Senate',
-    'Vice President'
-)
+from stage.nov2014_general_county
 group by office
 order by office;
 
-
 select office, district, count(*) as cnt
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 group by office, district
 order by office, district;
 
-delete from stage.may2014_general_primary_precinct
-where office not in (
-    'Appeals Court Judge',
-    'Attorney General',
-    'Commissioner Of Agriculture',
-    'Commissioner Of Insurance',
-    'Commissioner Of Labor',
-    'District Attorney',
-    'Governor',
-    'Lieutenant Governor',
-    'President',
-    'Public Service Commissioner',
-    'Secretary Of State',
-    'State House',
-    'State School Superintendent',
-    'State Senate',
-    'Superior Court Judge',
-    'Supreme Court Justice',
-    'U.S. House',
-    'U.S. Senate',
-    'Vice President'
-)
 
 ------------------------------------------------------------------------------------------------------------------------
 -- Cleanup PARTY...
 ------------------------------------------------------------------------------------------------------------------------
 select party, count(*) as cnt
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 -- where office in ('District Attorney', 'President', 'State House', 'State Senate', 'U.S. House')
 group by party
 order by party;
 
-update stage.may2014_general_primary_precinct
+update stage.nov2014_general_county
     set party = 'Democrat'
 where upper(party) = 'DEM';
 
-update stage.may2014_general_primary_precinct
+update stage.nov2014_general_county
     set party = 'Republican'
 where upper(party) = 'REP';
 
-select distinct candidate
-from stage.may2014_general_primary_precinct
-where party is null;
--- ELENA C. PARENT --> Democrat
--- R. KYLE WILLIAMS --> Democrat
+update stage.nov2014_general_county
+    set party = 'Independent'
+where upper(party) = 'IND';
 
-update stage.may2014_general_primary_precinct
-    set party = 'Democrat'
-where party is null;
+update stage.nov2014_general_county
+    set party = 'Libertarian'
+where upper(party) = 'LIB';
 
-select *
-from stage.may2014_general_primary_county
-where candidate ilike 'R. KYLE WILLIAMS';
+update stage.nov2014_general_county
+    set party = 'Independent'
+where candidate = 'E. CULVER "RUSTY" KIDD (I)Ind';
 
 select party, count(*) as cnt
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
+-- where office in ('District Atto/rney', 'President', 'State House', 'State Senate', 'U.S. House')
 group by party
 order by party;
 
@@ -400,95 +332,113 @@ order by party;
 -- Cleanup COUNTY...
 ------------------------------------------------------------------------------------------------------------------------
 select county, count(*) as cnt
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 group by county
 order by county;
+
+update stage.nov2014_general_county
+    set county = replace(county, ' County', '');
 
 ------------------------------------------------------------------------------------------------------------------------
 -- Cleanup CANDIDATE...
 ------------------------------------------------------------------------------------------------------------------------
-alter table stage.may2014_general_primary_precinct
+alter table stage.nov2014_general_county
     add column original_candidate varchar;
 
-update stage.may2014_general_primary_precinct
+update stage.nov2014_general_county
     set original_candidate = candidate;
 
 select *
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 -- where office in ('District Attorney', 'President', 'State House', 'State Senate', 'U.S. House')
 limit 50;
 
 select candidate, count(*) as cnt
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 -- where office in ('District Attorney', 'President', 'State House', 'State Senate', 'U.S. House')
 group by candidate
 order by candidate;
 
-update stage.may2014_general_primary_precinct
-    set candidate = trim(replace(candidate, ' (I)', ''));
--- where office in ('District Attorney', 'President', 'State House', 'State Senate', 'U.S. House');
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, ' (R)', ''));
 
-update stage.may2014_general_primary_precinct
-    set candidate = trim(replace(candidate, '(I)', ''))
-where candidate ilike '%(I)';
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, ' (D)', ''));
 
-update stage.may2014_general_primary_precinct
-    set candidate = trim(replace(candidate, ' (I', ''))
-where candidate ilike '% (I';
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, ' (L)', ''));
 
-update stage.may2014_general_primary_precinct
-    set candidate = 'SAMUEL S. OLENS'
-where candidate = 'SAMUEL S. OLENS (Inc';
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, ' (I)R', ''));
+
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, ' (I)D', ''));
+
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, ' (I) D', ''));
+
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, ' (I) R', ''));
+
+select candidate, count(*) as cnt
+from stage.nov2014_general_county
+group by candidate
+order by candidate;
+
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, '(R)', ''))
+where candidate ilike '%(R)';
+
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, '(D)', ''))
+where candidate ilike '%(D)';
+
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, '(I)R', ''))
+where candidate ilike '%(I)R';
+
+update stage.nov2014_general_county
+    set candidate = trim(replace(candidate, '(I)D', ''))
+where candidate ilike '%(I)D';
+
+update stage.nov2014_general_county
+    set candidate = 'E. CULVER "RUSTY" KIDD'
+where candidate = 'E. CULVER "RUSTY" KIDD (I)Ind';
+
+update stage.nov2014_general_county
+    set candidate = 'W. H. "BILL" BOZARTH'
+where candidate = 'W. H. "BILL" BOZARTH (Ind)';
 
 select candidate, original_candidate, count(*) as cnt
-from stage.may2014_general_primary_precinct
+from stage.nov2014_general_county
 group by candidate, original_candidate
 order by candidate;
 
 -----------------------------------------------------------------------------------------------
 -- Move data to PROD and QC the data...
 -----------------------------------------------------------------------------------------------
-create or replace table prod.may2014_general_primary_precinct
+create or replace table prod.nov2014_general_county
 as
-select
-    county,
-    precinct,
-    office,
-    district,
-    party,
-    candidate,
-    total_votes,
-    election_day as election_day_votes,
-    advance_in_person as advanced_votes,
-    absentee_by_mail as absentee_by_mail_votes,
-    provisional as provisional_votes
-from stage.may2014_general_primary_precinct
+select *
+from stage.nov2014_general_county
 order by office, party, candidate;
 
+alter table prod.nov2014_general_county
+    add column precinct varchar;
+
+update prod.nov2014_general_county
+    set precinct = 'not available';
+
 select *
-from prod.may2014_general_primary_precinct;
+from prod.nov2014_general_county;
 
 -- Make sure vote type counts match total_votes...
 select
     candidate,
     total_votes,
     (absentee_by_mail_votes + advanced_votes + election_day_votes + provisional_votes) as qc_total_votes
-from prod.may2014_general_primary_precinct
+from prod.nov2014_general_county
 where total_votes <> qc_total_votes;
-
--- These precinct votes are not matching...
-with invalid_vote_counts as
-(
-    select
-        candidate,
-        total_votes,
-        (absentee_by_mail_votes + advanced_votes + election_day_votes + provisional_votes) as qc_total_votes
-    from prod.may2014_general_primary_precinct
-    where total_votes <> qc_total_votes
-)
-select distinct candidate
-from invalid_vote_counts
-order by candidate;
 
 -- Check a few precinct race results with the website...
 select
@@ -497,7 +447,7 @@ select
     candidate,
     party,
     sum(absentee_by_mail_votes + advanced_votes + election_day_votes + provisional_votes) as total_votes
-from prod.may2014_general_primary_precinct
+from prod.nov2014_general_county
 group by office, district, candidate, party
 order by office, district, candidate, party;
 
@@ -513,7 +463,7 @@ select
     election_day_votes,
     absentee_by_mail_votes,
     provisional_votes
-from prod.may2014_general_primary_precinct
+from prod.nov2014_general_county
 order by county, office, district, candidate, party;
 
 -- Aggregate to county level and make sure we are still matching...
@@ -524,16 +474,11 @@ select
     candidate,
     party,
     sum(absentee_by_mail_votes + advanced_votes + election_day_votes + provisional_votes) as total_votes
-from prod.may2014_general_primary_precinct
+from prod.nov2014_general_county
 group by county, office, district, candidate, party
 order by county, office, district, candidate, party;
 
-select *
-from prod.may2014_general_primary_county
-order by county, office, district, candidate, party;
-
-
-update prod.may2014_general_primary_precinct
+update prod.nov2014_general_county
     set candidate = trim(candidate);
 
 select
@@ -547,7 +492,7 @@ select
     advanced_votes,
     absentee_by_mail_votes,
     provisional_votes
-from prod.may2014_general_primary_precinct
+from prod.nov2014_general_county
 order by county, office, try_cast(district as integer), party, candidate;
 
 -----------------------------------------------------------------------------------------------
@@ -566,9 +511,9 @@ COPY
         advanced_votes,
         absentee_by_mail_votes,
         provisional_votes
-    from prod.may2014_general_primary_precinct
+    from prod.nov2014_general_county
     order by county, office, try_cast(district as integer), party, candidate   
-) to '/Users/skunkworks/Development/openelections-data-ga/2014/20140520__ga__general__primary__precinct-level_UNOFFICIAL.csv'
+) to '/Users/skunkworks/Development/openelections-data-ga/2014/20141104__ga__general__county-level.csv'
 (HEADER, DELIMITER ',');
 
 checkpoint;

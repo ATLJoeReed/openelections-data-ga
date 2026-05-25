@@ -9,7 +9,7 @@ WITH precinct_agg AS (
         SUM(advanced_votes) AS p_advanced,
         SUM(absentee_by_mail_votes) AS p_absentee,
         SUM(provisional_votes) AS p_provisional
-    FROM read_csv_auto('/Users/skunkworks/Development/openelections-data-ga/2014/20140520__ga__general__primary__precinct-level_UNOFFICIAL.csv')
+    FROM read_csv_auto('/Users/skunkworks/Development/openelections-data-ga/2014/20141104__ga__general__precinct-level_UNOFFICIAL.csv')
     GROUP BY county, office, district, party, candidate
 ),
 county_level AS (
@@ -23,7 +23,7 @@ county_level AS (
         advanced_votes AS c_advanced,
         absentee_by_mail_votes AS c_absentee,
         provisional_votes AS c_provisional
-    FROM read_csv_auto('/Users/skunkworks/Development/openelections-data-ga/2014/20140520__ga__general__primary__county-level.csv')
+    FROM read_csv_auto('/Users/skunkworks/Development/openelections-data-ga/2014/20141104__ga__general__county-level.csv')
 )
 SELECT 
     c.county,
