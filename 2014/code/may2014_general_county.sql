@@ -555,6 +555,12 @@ update stage.may2014_general_primary_county
     set candidate = 'BRUCE A. THOMPSON'
 where candidate = 'BRUCE A. THOMPSON (I';
 
+update stage.may2014_general_primary_county
+    set candidate = regexp_replace(candidate, ' +', ' ', 'g');
+
+update stage.may2014_general_primary_county
+    set candidate = trim(candidate);
+
 select candidate, original_candidate, count(*) as cnt
 from stage.may2014_general_primary_county
 -- where office in ('District Attorney', 'President', 'State House', 'State Senate', 'U.S. House')
@@ -625,9 +631,6 @@ select
 from prod.may2014_general_primary_county
 group by county, office, district, candidate, party
 order by county, office, district, candidate, party;
-
-update prod.may2014_general_primary_county
-    set candidate = trim(candidate);
 
 select
     county,

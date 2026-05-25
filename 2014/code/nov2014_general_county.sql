@@ -409,6 +409,12 @@ update stage.nov2014_general_county
     set candidate = 'W. H. "BILL" BOZARTH'
 where candidate = 'W. H. "BILL" BOZARTH (Ind)';
 
+update stage.nov2014_general_county
+    set candidate = regexp_replace(candidate, ' +', ' ', 'g');
+
+update stage.nov2014_general_county
+    set candidate = trim(candidate);
+
 select candidate, original_candidate, count(*) as cnt
 from stage.nov2014_general_county
 group by candidate, original_candidate
@@ -477,9 +483,6 @@ select
 from prod.nov2014_general_county
 group by county, office, district, candidate, party
 order by county, office, district, candidate, party;
-
-update prod.nov2014_general_county
-    set candidate = trim(candidate);
 
 select
     county,
